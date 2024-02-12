@@ -81,7 +81,6 @@ namespace com_port
                 serialPort1.DataBits = int.Parse(cboBit.Text);
                 if (checkEven.Checked) { serialPort1.Parity = Parity.Even; } else if(checkOdd.Checked){ serialPort1.Parity = Parity.Odd; } else { serialPort1.Parity = Parity.None; }
                 serialPort1.Open();
-                serialPort1.Open();
             }
             catch
             (Exception ex)
