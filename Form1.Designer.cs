@@ -56,12 +56,13 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.label8 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(692, 64);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOpen.Location = new System.Drawing.Point(794, 45);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(99, 35);
             this.btnOpen.TabIndex = 0;
@@ -73,15 +74,15 @@
             // 
             this.cboPort.FormattingEnabled = true;
             this.cboPort.Location = new System.Drawing.Point(455, 53);
-            this.cboPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(2);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(206, 24);
             this.cboPort.TabIndex = 1;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(809, 64);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Location = new System.Drawing.Point(794, 96);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(99, 35);
             this.btnClose.TabIndex = 0;
@@ -94,7 +95,7 @@
             this.txtReceive.BackColor = System.Drawing.SystemColors.Info;
             this.txtReceive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReceive.Location = new System.Drawing.Point(72, 160);
-            this.txtReceive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReceive.Margin = new System.Windows.Forms.Padding(2);
             this.txtReceive.Multiline = true;
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
@@ -106,7 +107,7 @@
             // 
             this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMessage.Location = new System.Drawing.Point(72, 374);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -117,7 +118,7 @@
             // 
             this.btnSend.Enabled = false;
             this.btnSend.Location = new System.Drawing.Point(809, 554);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(2);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(99, 35);
             this.btnSend.TabIndex = 0;
@@ -129,7 +130,7 @@
             // 
             this.btnSelect.Enabled = false;
             this.btnSelect.Location = new System.Drawing.Point(435, 629);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(101, 35);
             this.btnSelect.TabIndex = 0;
@@ -141,7 +142,7 @@
             // 
             this.btnUpload.Enabled = false;
             this.btnUpload.Location = new System.Drawing.Point(807, 629);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(101, 35);
             this.btnUpload.TabIndex = 0;
@@ -201,7 +202,7 @@
             // 
             this.cboBaudrate.FormattingEnabled = true;
             this.cboBaudrate.Location = new System.Drawing.Point(455, 83);
-            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2);
             this.cboBaudrate.Name = "cboBaudrate";
             this.cboBaudrate.Size = new System.Drawing.Size(206, 24);
             this.cboBaudrate.TabIndex = 1;
@@ -220,7 +221,7 @@
             // slcFile
             // 
             this.slcFile.Location = new System.Drawing.Point(165, 636);
-            this.slcFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slcFile.Margin = new System.Windows.Forms.Padding(2);
             this.slcFile.Name = "slcFile";
             this.slcFile.Size = new System.Drawing.Size(239, 22);
             this.slcFile.TabIndex = 4;
@@ -228,7 +229,7 @@
             // btnClear
             // 
             this.btnClear.Location = new System.Drawing.Point(72, 554);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(99, 35);
             this.btnClear.TabIndex = 5;
@@ -242,7 +243,7 @@
             this.checkNone.Checked = true;
             this.checkNone.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkNone.Location = new System.Drawing.Point(134, 52);
-            this.checkNone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkNone.Margin = new System.Windows.Forms.Padding(2);
             this.checkNone.Name = "checkNone";
             this.checkNone.Size = new System.Drawing.Size(62, 20);
             this.checkNone.TabIndex = 6;
@@ -254,7 +255,7 @@
             // 
             this.checkOdd.AutoSize = true;
             this.checkOdd.Location = new System.Drawing.Point(214, 52);
-            this.checkOdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkOdd.Margin = new System.Windows.Forms.Padding(2);
             this.checkOdd.Name = "checkOdd";
             this.checkOdd.Size = new System.Drawing.Size(55, 20);
             this.checkOdd.TabIndex = 6;
@@ -266,7 +267,7 @@
             // 
             this.checkEven.AutoSize = true;
             this.checkEven.Location = new System.Drawing.Point(286, 53);
-            this.checkEven.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkEven.Margin = new System.Windows.Forms.Padding(2);
             this.checkEven.Name = "checkEven";
             this.checkEven.Size = new System.Drawing.Size(60, 20);
             this.checkEven.TabIndex = 6;
@@ -297,7 +298,7 @@
             // cboBit
             // 
             this.cboBit.Location = new System.Drawing.Point(134, 82);
-            this.cboBit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBit.Margin = new System.Windows.Forms.Padding(2);
             this.cboBit.Name = "cboBit";
             this.cboBit.Size = new System.Drawing.Size(122, 24);
             this.cboBit.TabIndex = 9;
@@ -306,7 +307,7 @@
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
             this.progressBar1.Location = new System.Drawing.Point(559, 639);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(230, 15);
             this.progressBar1.TabIndex = 10;
@@ -324,6 +325,16 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(681, 64);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(99, 35);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "Yenile";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -331,6 +342,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(974, 742);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.cboBit);
@@ -357,7 +369,7 @@
             this.Controls.Add(this.btnOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Com Port App";
@@ -396,6 +408,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 

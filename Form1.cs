@@ -71,20 +71,31 @@ namespace com_port
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
-            if (cboPort.Text != "") {
-                btnOpen.Enabled = false;
-                btnClose.Enabled = true;
-                btnSelect.Enabled = true;
-                if (txtMessage.ForeColor != Color.Green) {
-                    btnSend.Enabled = true;
-                }
-                if (slcFile.Text != "")
-                {
-                    btnUpload.Enabled = true;
-                }
-            }
+            
             try
             {
+                if (cboPort.Text != "")
+                {
+                    btnOpen.Enabled = false;
+                    btnClose.Enabled = true;
+                    btnSelect.Enabled = true;
+                    if (txtMessage.ForeColor != Color.Green)
+                    {
+                        btnSend.Enabled = true;
+                    }
+                    if (slcFile.Text != "")
+                    {
+                        btnUpload.Enabled = true;
+                    }
+                    cboBaudrate.Enabled = false;
+                    cboBit.Enabled = false;
+                    cboPort.Enabled = false;
+                    checkEven.Enabled = false;
+                    checkOdd.Enabled = false;
+                    checkNone.Enabled = false;
+                }
+
+
                 serialPort1.PortName = cboPort.Text;
                 serialPort1.BaudRate = int.Parse(cboBaudrate.Text);
                 serialPort1.DataBits = int.Parse(cboBit.Text);
@@ -103,13 +114,6 @@ namespace com_port
 
             serialPort1.DataReceived += SerialPort_DataReceived;
             //txtReceive.AppendText(serialPort1.ReadExisting() + Environment.NewLine);//"sdjfkgos" + Environment.NewLine);
-
-            cboBaudrate.Enabled = false;
-            cboBit.Enabled = false;
-            cboPort.Enabled = false;
-            checkEven.Enabled = false;
-            checkOdd.Enabled = false;
-            checkNone.Enabled = false;
 
         }
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -270,6 +274,31 @@ namespace com_port
             {
                 MessageBox.Show("Dosya gönderilirken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 btnUpload.Enabled = false;
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            // Mevcut seri portları temizle
+            cboPort.Items.Clear();
+
+            // Tüm seri portları al
+            string[] ports = SerialPort.GetPortNames();
+
+            // Seri portları listeye ekle
+            foreach (string port in ports)
+            {
+                cboPort.Items.Add(port);
+            }
+
+            // İlk seri portu varsayılan olarak seç
+            if (cboPort.Items.Count > 0)
+            {
+                cboPort.SelectedIndex = 0;
+            }
+            else
+            {
+                MessageBox.Show("Seri port bulunamadı.");
             }
         }
     }
