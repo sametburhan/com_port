@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnOpen = new System.Windows.Forms.Button();
             this.cboPort = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
@@ -53,13 +54,16 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cboBit = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label8 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(1043, 65);
+            this.btnOpen.Location = new System.Drawing.Point(692, 64);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(148, 54);
+            this.btnOpen.Size = new System.Drawing.Size(99, 35);
             this.btnOpen.TabIndex = 0;
             this.btnOpen.Text = "Bağlan";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -68,16 +72,18 @@
             // cboPort
             // 
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(687, 48);
+            this.cboPort.Location = new System.Drawing.Point(455, 53);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboPort.Name = "cboPort";
-            this.cboPort.Size = new System.Drawing.Size(307, 33);
+            this.cboPort.Size = new System.Drawing.Size(206, 24);
             this.cboPort.TabIndex = 1;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1218, 65);
+            this.btnClose.Location = new System.Drawing.Point(809, 64);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(148, 54);
+            this.btnClose.Size = new System.Drawing.Size(99, 35);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Durdur";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -86,28 +92,34 @@
             // txtReceive
             // 
             this.txtReceive.BackColor = System.Drawing.SystemColors.Info;
-            this.txtReceive.Location = new System.Drawing.Point(112, 236);
+            this.txtReceive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtReceive.Location = new System.Drawing.Point(72, 160);
+            this.txtReceive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtReceive.Multiline = true;
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
             this.txtReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReceive.Size = new System.Drawing.Size(1254, 245);
+            this.txtReceive.Size = new System.Drawing.Size(837, 158);
             this.txtReceive.TabIndex = 2;
             // 
             // txtMessage
             // 
-            this.txtMessage.Location = new System.Drawing.Point(112, 570);
+            this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMessage.Location = new System.Drawing.Point(72, 374);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage.Size = new System.Drawing.Size(1254, 245);
+            this.txtMessage.Size = new System.Drawing.Size(837, 158);
             this.txtMessage.TabIndex = 2;
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(1218, 851);
+            this.btnSend.Enabled = false;
+            this.btnSend.Location = new System.Drawing.Point(809, 554);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(148, 54);
+            this.btnSend.Size = new System.Drawing.Size(99, 35);
             this.btnSend.TabIndex = 0;
             this.btnSend.Text = "Gönder";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -115,28 +127,35 @@
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(657, 968);
+            this.btnSelect.Enabled = false;
+            this.btnSelect.Location = new System.Drawing.Point(435, 629);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(148, 54);
+            this.btnSelect.Size = new System.Drawing.Size(101, 35);
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "Seç";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(831, 968);
+            this.btnUpload.Enabled = false;
+            this.btnUpload.Location = new System.Drawing.Point(807, 629);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(148, 54);
+            this.btnUpload.Size = new System.Drawing.Size(101, 35);
             this.btnUpload.TabIndex = 0;
             this.btnUpload.Text = "Yükle";
             this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(107, 983);
+            this.label2.Location = new System.Drawing.Point(68, 638);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 25);
+            this.label2.Size = new System.Drawing.Size(87, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Hex Dosyası:";
             this.label2.Click += new System.EventHandler(this.label1_Click);
@@ -144,9 +163,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(107, 188);
+            this.label3.Location = new System.Drawing.Point(68, 129);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 25);
+            this.label3.Size = new System.Drawing.Size(47, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Alınan:";
             this.label3.Click += new System.EventHandler(this.label1_Click);
@@ -154,9 +174,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(107, 522);
+            this.label4.Location = new System.Drawing.Point(68, 343);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 25);
+            this.label4.Size = new System.Drawing.Size(76, 16);
             this.label4.TabIndex = 3;
             this.label4.Text = "Gönderilen:";
             this.label4.Click += new System.EventHandler(this.label1_Click);
@@ -168,9 +189,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(562, 51);
+            this.label1.Location = new System.Drawing.Point(372, 55);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 25);
+            this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Com Port:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -178,33 +200,37 @@
             // cboBaudrate
             // 
             this.cboBaudrate.FormattingEnabled = true;
-            this.cboBaudrate.Location = new System.Drawing.Point(687, 96);
+            this.cboBaudrate.Location = new System.Drawing.Point(455, 83);
+            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboBaudrate.Name = "cboBaudrate";
-            this.cboBaudrate.Size = new System.Drawing.Size(307, 33);
+            this.cboBaudrate.Size = new System.Drawing.Size(206, 24);
             this.cboBaudrate.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(564, 99);
+            this.label5.Location = new System.Drawing.Point(373, 85);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 25);
+            this.label5.Size = new System.Drawing.Size(65, 16);
             this.label5.TabIndex = 3;
             this.label5.Text = "Baudrate:";
             this.label5.Click += new System.EventHandler(this.label1_Click);
             // 
             // slcFile
             // 
-            this.slcFile.Location = new System.Drawing.Point(252, 980);
+            this.slcFile.Location = new System.Drawing.Point(165, 636);
+            this.slcFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.slcFile.Name = "slcFile";
-            this.slcFile.Size = new System.Drawing.Size(356, 31);
+            this.slcFile.Size = new System.Drawing.Size(239, 22);
             this.slcFile.TabIndex = 4;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(112, 851);
+            this.btnClear.Location = new System.Drawing.Point(72, 554);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(148, 54);
+            this.btnClear.Size = new System.Drawing.Size(99, 35);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Temizle";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -215,9 +241,10 @@
             this.checkNone.AutoSize = true;
             this.checkNone.Checked = true;
             this.checkNone.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkNone.Location = new System.Drawing.Point(206, 47);
+            this.checkNone.Location = new System.Drawing.Point(134, 52);
+            this.checkNone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkNone.Name = "checkNone";
-            this.checkNone.Size = new System.Drawing.Size(95, 29);
+            this.checkNone.Size = new System.Drawing.Size(62, 20);
             this.checkNone.TabIndex = 6;
             this.checkNone.Text = "None";
             this.checkNone.UseVisualStyleBackColor = true;
@@ -226,9 +253,10 @@
             // checkOdd
             // 
             this.checkOdd.AutoSize = true;
-            this.checkOdd.Location = new System.Drawing.Point(326, 47);
+            this.checkOdd.Location = new System.Drawing.Point(214, 52);
+            this.checkOdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkOdd.Name = "checkOdd";
-            this.checkOdd.Size = new System.Drawing.Size(84, 29);
+            this.checkOdd.Size = new System.Drawing.Size(55, 20);
             this.checkOdd.TabIndex = 6;
             this.checkOdd.Text = "Odd";
             this.checkOdd.UseVisualStyleBackColor = true;
@@ -237,9 +265,10 @@
             // checkEven
             // 
             this.checkEven.AutoSize = true;
-            this.checkEven.Location = new System.Drawing.Point(433, 48);
+            this.checkEven.Location = new System.Drawing.Point(286, 53);
+            this.checkEven.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkEven.Name = "checkEven";
-            this.checkEven.Size = new System.Drawing.Size(93, 29);
+            this.checkEven.Size = new System.Drawing.Size(60, 20);
             this.checkEven.TabIndex = 6;
             this.checkEven.Text = "Even";
             this.checkEven.UseVisualStyleBackColor = true;
@@ -248,43 +277,61 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(107, 47);
+            this.label6.Location = new System.Drawing.Point(68, 52);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 25);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 7;
             this.label6.Text = "Parity:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(107, 96);
+            this.label7.Location = new System.Drawing.Point(68, 83);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(73, 25);
+            this.label7.Size = new System.Drawing.Size(44, 16);
             this.label7.TabIndex = 7;
             this.label7.Text = "Boyut:";
             // 
             // cboBit
             // 
-            this.cboBit.Location = new System.Drawing.Point(206, 93);
+            this.cboBit.Location = new System.Drawing.Point(134, 82);
+            this.cboBit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cboBit.Name = "cboBit";
-            this.cboBit.Size = new System.Drawing.Size(181, 33);
+            this.cboBit.Size = new System.Drawing.Size(122, 24);
             this.cboBit.TabIndex = 9;
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
-            this.progressBar1.Location = new System.Drawing.Point(1021, 984);
+            this.progressBar1.Location = new System.Drawing.Point(559, 639);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(345, 23);
+            this.progressBar1.Size = new System.Drawing.Size(230, 15);
             this.progressBar1.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 9);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(122, 16);
+            this.label8.TabIndex = 11;
+            this.label8.Text = "Derin SkySis Sunar";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1462, 1090);
+            this.ClientSize = new System.Drawing.Size(974, 742);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.cboBit);
             this.Controls.Add(this.label7);
@@ -308,9 +355,12 @@
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnOpen);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Com Port Bootloader ";
+            this.Text = "Com Port App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -344,6 +394,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboBit;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

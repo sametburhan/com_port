@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -63,7 +64,7 @@ namespace com_port
             try{ cboPort.SelectedIndex = 0; }
             catch
             (Exception ex)
-            { MessageBox.Show(ex.Message, "Hiç com portu yok", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            { MessageBox.Show("Hiç com portu yok!!: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             btnClose.Enabled = false;
             
         }
@@ -73,18 +74,32 @@ namespace com_port
             if (cboPort.Text != "") {
                 btnOpen.Enabled = false;
                 btnClose.Enabled = true;
+                btnSelect.Enabled = true;
+                if (txtMessage.ForeColor != Color.Green) {
+                    btnSend.Enabled = true;
+                }
+                if (slcFile.Text != "")
+                {
+                    btnUpload.Enabled = true;
+                }
             }
             try
             {
                 serialPort1.PortName = cboPort.Text;
                 serialPort1.BaudRate = int.Parse(cboBaudrate.Text);
                 serialPort1.DataBits = int.Parse(cboBit.Text);
-                if (checkEven.Checked) { serialPort1.Parity = Parity.Even; } else if(checkOdd.Checked){ serialPort1.Parity = Parity.Odd; } else { serialPort1.Parity = Parity.None; }
+                if (checkEven.Checked) { serialPort1.Parity = Parity.Even;
+                    //txtMessage.Text = "even";
+                } else if(checkOdd.Checked){ serialPort1.Parity = Parity.Odd;
+                    //txtMessage.Text = "odd";
+                } else { serialPort1.Parity = Parity.None;
+                    //txtMessage.Text = "none";
+                }
                 serialPort1.Open();
             }
             catch
             (Exception ex)
-            { MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            { MessageBox.Show("Bağlantıda bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
             serialPort1.DataReceived += SerialPort_DataReceived;
             //txtReceive.AppendText(serialPort1.ReadExisting() + Environment.NewLine);//"sdjfkgos" + Environment.NewLine);
@@ -124,13 +139,17 @@ namespace com_port
             }
             catch
             (Exception ex)
-            { MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            { MessageBox.Show("Veri gönderilirken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             btnOpen.Enabled = true;
             btnClose.Enabled = false;
+            btnSelect.Enabled = false;
+            btnUpload.Enabled = false;
+            btnSend.Enabled = false;
+
 
             try
             {
@@ -138,7 +157,7 @@ namespace com_port
             }
             catch
             (Exception ex)
-            { MessageBox.Show(ex.Message, "Message", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            { MessageBox.Show("Port kapanırken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);  }
 
             cboBaudrate.Enabled = true;
             cboBit.Enabled = true;
@@ -156,6 +175,11 @@ namespace com_port
 
         private void btnClear_Click(object sender, EventArgs e)
         {
+            if (!btnSend.Enabled) {
+                btnSend.Enabled = true;
+                txtMessage.ForeColor = Color.Black;
+                txtMessage.Font = new Font(txtReceive.Font, FontStyle.Regular);
+            }
             txtReceive.Clear();
             txtMessage.Clear();
         }
@@ -194,6 +218,59 @@ namespace com_port
                 checkEven.Checked = true;
             }
 
+        }
+
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Hex Files (*.hex)|*.hex|All Files (*.*)|*.*";
+            openFileDialog.FilterIndex = 1;
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    slcFile.Text = openFileDialog.FileName;
+                    btnUpload.Enabled = true;
+                                                         
+                    MessageBox.Show("Hex dosyası başarıyla içe aktarıldı.", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Dosya içe aktarılırken bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void ProcessHexContent(string hexContent)
+        {
+            txtMessage.ForeColor = Color.Green;
+            txtMessage.Font = new Font(txtReceive.Font, FontStyle.Italic);
+            txtMessage.Text = "Bootloader yükleniyor.." + Environment.NewLine + hexContent + Environment.NewLine + "Dosya sonu!!" + Environment.NewLine;
+            //satır satır gönderilecek
+            serialPort1.WriteLine(hexContent);
+            btnSend.Enabled = false;
+            // Burada hex içeriğini işleyebilirsiniz.
+            // Örneğin: Verileri okuyup işleyebilir veya başka bir işlem yapabilirsiniz.
+            // İçeriğin yapısına ve ne yapmak istediğinize bağlı olarak bu fonksiyonu doldurmalısınız.
+            // Örneğin: MessageBox.Show(hexContent); gibi bir işlem yerine gerçek işlemleri eklemelisiniz.
+        }
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            // Hex içeriğini işleme al
+            // Dosyayı oku
+            try
+            {
+                string hexContent = File.ReadAllText(slcFile.Text);
+                ProcessHexContent(hexContent);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Dosya gönderilirken hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnUpload.Enabled = false;
+            }
         }
     }
 }
