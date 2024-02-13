@@ -7,6 +7,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -157,7 +158,11 @@ namespace com_port
 
             try
             {
-                serialPort1.Close();
+                // Portu kapatmak için başka bir thread oluştur
+                Thread closeThread = new Thread(ClosePort);
+                closeThread.Start();
+                //serialPort1.Close();
+                serialPort1.DiscardInBuffer();
             }
             catch
             (Exception ex)
@@ -169,6 +174,15 @@ namespace com_port
             checkEven.Enabled = true;
             checkOdd.Enabled = true;
             checkNone.Enabled = true;
+        }
+
+        private void ClosePort()
+        {
+            if (serialPort1.IsOpen)
+            {
+                serialPort1.Close();
+            }
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
