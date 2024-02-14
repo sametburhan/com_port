@@ -10,11 +10,16 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ZedGraph;
 namespace com_port
 {
     public partial class Form1 : Form
     {
+        GraphPane myPaneSicaklik = new GraphPane();
+        PointPairList listPointsSicaklik = new PointPairList();
+
+        LineItem myCurveSicaklik;
+        double zaman = 0;
 
         public Form1()
         {
@@ -28,6 +33,7 @@ namespace com_port
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            GrafikHazırla();
             string[] ports = SerialPort.GetPortNames();
             List<string> baudRates = new List<string>()
             {
@@ -70,6 +76,20 @@ namespace com_port
             
         }
 
+
+        private void GrafikHazırla()
+        {
+            myPaneSicaklik = zedGraphControl1.GraphPane;
+            myPaneSicaklik.Title.Text = "Sıcaklık - Zaman Grafiği";
+            myPaneSicaklik.XAxis.Title.Text = "Zaman  t ";
+            myPaneSicaklik.YAxis.Title.Text = "Sıcaklık *C";
+
+            myPaneSicaklik.YAxis.Scale.Min = 0;
+            myPaneSicaklik.YAxis.Scale.Max = 1000;
+
+            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsSicaklik, Color.Red, SymbolType.None);
+            myCurveSicaklik.Line.Width = 4;
+        }
         private void btnOpen_Click(object sender, EventArgs e)
         {
             
@@ -129,6 +149,17 @@ namespace com_port
             {
                 txtReceive.AppendText(receivedData);
             }));
+            }
+            string[] data = serialPort1.ReadLine().Split('*');
+            if (data.Length == 4)
+            {
+                zaman += 0.05;
+                listPointsSicaklik.Add(new PointPair(zaman, Convert.ToDouble(data.ToString())));
+                myPaneSicaklik.XAxis.Scale.Max = zaman;
+                myPaneSicaklik.AxisChange();
+
+                zedGraphControl1.Refresh();
+
             }
         }
 
@@ -314,6 +345,11 @@ namespace com_port
             {
                 MessageBox.Show("Seri port bulunamadı.");
             }
+        }
+
+        private void zedGraphControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
