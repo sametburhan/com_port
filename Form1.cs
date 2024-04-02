@@ -11,15 +11,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
+using static System.Windows.Forms.LinkLabel;
 namespace com_port
 {
     public partial class Form1 : Form
     {
         GraphPane myPaneSicaklik = new GraphPane();
-        PointPairList listPointsSicaklik = new PointPairList();
+        PointPairList listPointsRoll = new PointPairList();
+        PointPairList listPointsPitch = new PointPairList();
+        PointPairList listPointsYaw = new PointPairList();
 
         LineItem myCurveSicaklik;
         double zaman = 0;
+        bool graphOpen = false;
 
         public Form1()
         {
@@ -80,14 +84,16 @@ namespace com_port
         private void GrafikHazırla()
         {
             myPaneSicaklik = zedGraphControl1.GraphPane;
-            myPaneSicaklik.Title.Text = "Sıcaklık - Zaman Grafiği";
-            myPaneSicaklik.XAxis.Title.Text = "Zaman  t ";
-            myPaneSicaklik.YAxis.Title.Text = "Sıcaklık *C";
+            myPaneSicaklik.Title.Text = "Plot";
+            myPaneSicaklik.XAxis.Title.Text = "Time  t ";
+            myPaneSicaklik.YAxis.Title.Text = "Value";
 
             myPaneSicaklik.YAxis.Scale.Min = 0;
             myPaneSicaklik.YAxis.Scale.Max = 1000;
 
-            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsSicaklik, Color.Red, SymbolType.None);
+            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsRoll, Color.Red, SymbolType.None);
+            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsPitch, Color.Blue, SymbolType.None);
+            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsYaw, Color.Green, SymbolType.None);
             myCurveSicaklik.Line.Width = 4;
         }
         private void btnOpen_Click(object sender, EventArgs e)
@@ -141,26 +147,51 @@ namespace com_port
         {
         if (serialPort1.IsOpen)
             {
-            SerialPort serialPort = (SerialPort)sender;
-            string receivedData = serialPort.ReadExisting();
+                SerialPort serialPort = (SerialPort)sender;
+                string receivedData = serialPort.ReadExisting();
+                double roll = 0, pitch = 0, yaw = 0;
+                int count = 0;
+                List<string> dataParts = new List<string>();
 
-            // GUI elemanlarına erişim için Invoke kullanılması
-            Invoke(new Action(() =>
-            {
-                txtReceive.AppendText(receivedData);
-            }));
+                // GUI elemanlarına erişim için Invoke kullanılması
+                Invoke(new Action(() =>
+                {
+                    if (!graphOpen) { txtReceive.AppendText(receivedData);}
+                    else if (graphOpen) {
+                        zaman += 0.05;
+
+
+                        dataParts.AddRange(receivedData.Split(','));
+
+                        
+                        switch (count) { 
+                            case 0:
+                                double.TryParse(dataParts[0], out roll);
+                                listPointsRoll.Add(new PointPair(zaman, roll));
+                                count++;
+                                 break;
+                            case 1:
+                                double.TryParse(dataParts[0], out pitch);
+                                listPointsPitch.Add(new PointPair(zaman, pitch));
+                                count++; break;
+                            case 2:
+                                double.TryParse(dataParts[0], out yaw);
+                                listPointsYaw.Add(new PointPair(zaman, yaw));
+                                count = 0; break;
+                            default:
+                                //listPointsRoll.Add(new PointPair(zaman, roll));
+                                count = 0; break;
+                        }
+                                             
+                        myPaneSicaklik.XAxis.Scale.Max = zaman;
+                        myPaneSicaklik.AxisChange();
+
+                        zedGraphControl1.Refresh();
+                    }
+                }));
+                                    
             }
-            string[] data = serialPort1.ReadLine().Split('*');
-            if (data.Length == 4)
-            {
-                zaman += 0.05;
-                listPointsSicaklik.Add(new PointPair(zaman, Convert.ToDouble(data.ToString())));
-                myPaneSicaklik.XAxis.Scale.Max = zaman;
-                myPaneSicaklik.AxisChange();
-
-                zedGraphControl1.Refresh();
-
-            }
+            
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -350,6 +381,20 @@ namespace com_port
         private void zedGraphControl1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = false;
+            button2.Enabled = true;
+            graphOpen = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            button2.Enabled = false;
+            graphOpen = false;
         }
     }
 }

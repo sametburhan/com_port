@@ -54,18 +54,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cboBit = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label8 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(794, 45);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOpen.Location = new System.Drawing.Point(1168, 94);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(99, 35);
+            this.btnOpen.Size = new System.Drawing.Size(148, 55);
             this.btnOpen.TabIndex = 0;
             this.btnOpen.Text = "Bağlan";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -74,18 +76,16 @@
             // cboPort
             // 
             this.cboPort.FormattingEnabled = true;
-            this.cboPort.Location = new System.Drawing.Point(455, 53);
-            this.cboPort.Margin = new System.Windows.Forms.Padding(2);
+            this.cboPort.Location = new System.Drawing.Point(636, 108);
             this.cboPort.Name = "cboPort";
-            this.cboPort.Size = new System.Drawing.Size(206, 24);
+            this.cboPort.Size = new System.Drawing.Size(307, 33);
             this.cboPort.TabIndex = 1;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(794, 96);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Location = new System.Drawing.Point(1168, 173);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(99, 35);
+            this.btnClose.Size = new System.Drawing.Size(148, 55);
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "Durdur";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -95,33 +95,30 @@
             // 
             this.txtReceive.BackColor = System.Drawing.SystemColors.Info;
             this.txtReceive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReceive.Location = new System.Drawing.Point(72, 160);
-            this.txtReceive.Margin = new System.Windows.Forms.Padding(2);
+            this.txtReceive.Location = new System.Drawing.Point(62, 275);
             this.txtReceive.Multiline = true;
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
             this.txtReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtReceive.Size = new System.Drawing.Size(837, 158);
+            this.txtReceive.Size = new System.Drawing.Size(1254, 246);
             this.txtReceive.TabIndex = 2;
             // 
             // txtMessage
             // 
             this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMessage.Location = new System.Drawing.Point(72, 374);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(2);
+            this.txtMessage.Location = new System.Drawing.Point(62, 609);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtMessage.Size = new System.Drawing.Size(837, 158);
+            this.txtMessage.Size = new System.Drawing.Size(1254, 246);
             this.txtMessage.TabIndex = 2;
             // 
             // btnSend
             // 
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(809, 554);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSend.Location = new System.Drawing.Point(1168, 891);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(99, 35);
+            this.btnSend.Size = new System.Drawing.Size(148, 55);
             this.btnSend.TabIndex = 0;
             this.btnSend.Text = "Gönder";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -130,10 +127,9 @@
             // btnSelect
             // 
             this.btnSelect.Enabled = false;
-            this.btnSelect.Location = new System.Drawing.Point(435, 629);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSelect.Location = new System.Drawing.Point(606, 1048);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(101, 35);
+            this.btnSelect.Size = new System.Drawing.Size(152, 55);
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "Seç";
             this.btnSelect.UseVisualStyleBackColor = true;
@@ -142,10 +138,9 @@
             // btnUpload
             // 
             this.btnUpload.Enabled = false;
-            this.btnUpload.Location = new System.Drawing.Point(807, 629);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
+            this.btnUpload.Location = new System.Drawing.Point(1166, 1050);
             this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(101, 35);
+            this.btnUpload.Size = new System.Drawing.Size(152, 55);
             this.btnUpload.TabIndex = 0;
             this.btnUpload.Text = "Yükle";
             this.btnUpload.UseVisualStyleBackColor = true;
@@ -154,10 +149,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(68, 638);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(56, 1062);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 16);
+            this.label2.Size = new System.Drawing.Size(139, 25);
             this.label2.TabIndex = 3;
             this.label2.Text = "Hex Dosyası:";
             this.label2.Click += new System.EventHandler(this.label1_Click);
@@ -165,10 +159,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 129);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(56, 227);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 16);
+            this.label3.Size = new System.Drawing.Size(78, 25);
             this.label3.TabIndex = 3;
             this.label3.Text = "Alınan:";
             this.label3.Click += new System.EventHandler(this.label1_Click);
@@ -176,10 +169,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(68, 343);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(56, 561);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 16);
+            this.label4.Size = new System.Drawing.Size(123, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Gönderilen:";
             this.label4.Click += new System.EventHandler(this.label1_Click);
@@ -192,10 +184,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(372, 55);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(512, 111);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.Size = new System.Drawing.Size(107, 25);
             this.label1.TabIndex = 3;
             this.label1.Text = "Com Port:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -203,37 +194,33 @@
             // cboBaudrate
             // 
             this.cboBaudrate.FormattingEnabled = true;
-            this.cboBaudrate.Location = new System.Drawing.Point(455, 83);
-            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2);
+            this.cboBaudrate.Location = new System.Drawing.Point(636, 155);
             this.cboBaudrate.Name = "cboBaudrate";
-            this.cboBaudrate.Size = new System.Drawing.Size(206, 24);
+            this.cboBaudrate.Size = new System.Drawing.Size(307, 33);
             this.cboBaudrate.TabIndex = 1;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(373, 85);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(513, 158);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 16);
+            this.label5.Size = new System.Drawing.Size(105, 25);
             this.label5.TabIndex = 3;
             this.label5.Text = "Baudrate:";
             this.label5.Click += new System.EventHandler(this.label1_Click);
             // 
             // slcFile
             // 
-            this.slcFile.Location = new System.Drawing.Point(165, 636);
-            this.slcFile.Margin = new System.Windows.Forms.Padding(2);
+            this.slcFile.Location = new System.Drawing.Point(201, 1059);
             this.slcFile.Name = "slcFile";
-            this.slcFile.Size = new System.Drawing.Size(239, 22);
+            this.slcFile.Size = new System.Drawing.Size(356, 31);
             this.slcFile.TabIndex = 4;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(72, 554);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClear.Location = new System.Drawing.Point(62, 891);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(99, 35);
+            this.btnClear.Size = new System.Drawing.Size(148, 55);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Temizle";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -244,10 +231,9 @@
             this.checkNone.AutoSize = true;
             this.checkNone.Checked = true;
             this.checkNone.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkNone.Location = new System.Drawing.Point(134, 52);
-            this.checkNone.Margin = new System.Windows.Forms.Padding(2);
+            this.checkNone.Location = new System.Drawing.Point(154, 106);
             this.checkNone.Name = "checkNone";
-            this.checkNone.Size = new System.Drawing.Size(62, 20);
+            this.checkNone.Size = new System.Drawing.Size(95, 29);
             this.checkNone.TabIndex = 6;
             this.checkNone.Text = "None";
             this.checkNone.UseVisualStyleBackColor = true;
@@ -256,10 +242,9 @@
             // checkOdd
             // 
             this.checkOdd.AutoSize = true;
-            this.checkOdd.Location = new System.Drawing.Point(214, 52);
-            this.checkOdd.Margin = new System.Windows.Forms.Padding(2);
+            this.checkOdd.Location = new System.Drawing.Point(274, 106);
             this.checkOdd.Name = "checkOdd";
-            this.checkOdd.Size = new System.Drawing.Size(55, 20);
+            this.checkOdd.Size = new System.Drawing.Size(84, 29);
             this.checkOdd.TabIndex = 6;
             this.checkOdd.Text = "Odd";
             this.checkOdd.UseVisualStyleBackColor = true;
@@ -268,10 +253,9 @@
             // checkEven
             // 
             this.checkEven.AutoSize = true;
-            this.checkEven.Location = new System.Drawing.Point(286, 53);
-            this.checkEven.Margin = new System.Windows.Forms.Padding(2);
+            this.checkEven.Location = new System.Drawing.Point(382, 108);
             this.checkEven.Name = "checkEven";
-            this.checkEven.Size = new System.Drawing.Size(60, 20);
+            this.checkEven.Size = new System.Drawing.Size(93, 29);
             this.checkEven.TabIndex = 6;
             this.checkEven.Text = "Even";
             this.checkEven.UseVisualStyleBackColor = true;
@@ -280,48 +264,35 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(68, 52);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(56, 106);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 16);
+            this.label6.Size = new System.Drawing.Size(73, 25);
             this.label6.TabIndex = 7;
             this.label6.Text = "Parity:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(68, 83);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(56, 155);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(44, 16);
+            this.label7.Size = new System.Drawing.Size(73, 25);
             this.label7.TabIndex = 7;
             this.label7.Text = "Boyut:";
             // 
             // cboBit
             // 
-            this.cboBit.Location = new System.Drawing.Point(134, 82);
-            this.cboBit.Margin = new System.Windows.Forms.Padding(2);
+            this.cboBit.Location = new System.Drawing.Point(154, 153);
             this.cboBit.Name = "cboBit";
-            this.cboBit.Size = new System.Drawing.Size(122, 24);
+            this.cboBit.Size = new System.Drawing.Size(181, 33);
             this.cboBit.TabIndex = 9;
             // 
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
-            this.progressBar1.Location = new System.Drawing.Point(559, 639);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
+            this.progressBar1.Location = new System.Drawing.Point(792, 1064);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(230, 15);
+            this.progressBar1.Size = new System.Drawing.Size(345, 23);
             this.progressBar1.TabIndex = 10;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 16);
-            this.label8.TabIndex = 11;
-            this.label8.Text = "Derin SkySis Sunar";
             // 
             // openFileDialog1
             // 
@@ -329,9 +300,10 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(681, 64);
+            this.btnRefresh.Location = new System.Drawing.Point(988, 125);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(99, 35);
+            this.btnRefresh.Size = new System.Drawing.Size(148, 55);
             this.btnRefresh.TabIndex = 12;
             this.btnRefresh.Text = "Yenile";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -339,8 +311,8 @@
             // 
             // zedGraphControl1
             // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(967, 13);
-            this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zedGraphControl1.Location = new System.Drawing.Point(1389, 173);
+            this.zedGraphControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.zedGraphControl1.Name = "zedGraphControl1";
             this.zedGraphControl1.ScrollGrace = 0D;
             this.zedGraphControl1.ScrollMaxX = 0D;
@@ -349,20 +321,66 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(606, 185);
+            this.zedGraphControl1.Size = new System.Drawing.Size(988, 930);
             this.zedGraphControl1.TabIndex = 13;
             this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(56, 998);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(183, 25);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Bootloader Yükle:";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1389, 100);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 52);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Aç";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(2229, 100);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 52);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "Kapat";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(1858, 114);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 25);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "Plot";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(1733, 742);
+            this.ClientSize = new System.Drawing.Size(2452, 1259);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.zedGraphControl1);
             this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.cboBit);
             this.Controls.Add(this.label7);
@@ -388,7 +406,6 @@
             this.Controls.Add(this.btnOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Com Port App";
@@ -425,10 +442,13 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboBit;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnRefresh;
         private ZedGraph.ZedGraphControl zedGraphControl1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label10;
     }
 }
 
