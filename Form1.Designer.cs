@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnOpen = new System.Windows.Forms.Button();
             this.cboPort = new System.Windows.Forms.ComboBox();
@@ -56,17 +59,18 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOpen
             // 
             this.btnOpen.Location = new System.Drawing.Point(570, 15);
-            this.btnOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(74, 29);
             this.btnOpen.TabIndex = 0;
@@ -78,7 +82,7 @@
             // 
             this.cboPort.FormattingEnabled = true;
             this.cboPort.Location = new System.Drawing.Point(304, 22);
-            this.cboPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPort.Margin = new System.Windows.Forms.Padding(2);
             this.cboPort.Name = "cboPort";
             this.cboPort.Size = new System.Drawing.Size(156, 21);
             this.cboPort.TabIndex = 1;
@@ -86,7 +90,7 @@
             // btnClose
             // 
             this.btnClose.Location = new System.Drawing.Point(570, 56);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(74, 29);
             this.btnClose.TabIndex = 0;
@@ -99,7 +103,7 @@
             this.txtReceive.BackColor = System.Drawing.SystemColors.Info;
             this.txtReceive.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtReceive.Location = new System.Drawing.Point(16, 109);
-            this.txtReceive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReceive.Margin = new System.Windows.Forms.Padding(2);
             this.txtReceive.Multiline = true;
             this.txtReceive.Name = "txtReceive";
             this.txtReceive.ReadOnly = true;
@@ -111,7 +115,7 @@
             // 
             this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMessage.Location = new System.Drawing.Point(16, 283);
-            this.txtMessage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMessage.Margin = new System.Windows.Forms.Padding(2);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -121,8 +125,8 @@
             // btnSend
             // 
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(570, 428);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSend.Location = new System.Drawing.Point(570, 422);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(2);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(74, 29);
             this.btnSend.TabIndex = 0;
@@ -133,8 +137,8 @@
             // btnSelect
             // 
             this.btnSelect.Enabled = false;
-            this.btnSelect.Location = new System.Drawing.Point(290, 510);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSelect.Location = new System.Drawing.Point(290, 491);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(2);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(76, 29);
             this.btnSelect.TabIndex = 0;
@@ -145,8 +149,8 @@
             // btnUpload
             // 
             this.btnUpload.Enabled = false;
-            this.btnUpload.Location = new System.Drawing.Point(570, 511);
-            this.btnUpload.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpload.Location = new System.Drawing.Point(570, 492);
+            this.btnUpload.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(76, 29);
             this.btnUpload.TabIndex = 0;
@@ -157,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 517);
+            this.label2.Location = new System.Drawing.Point(14, 498);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
@@ -207,7 +211,7 @@
             // 
             this.cboBaudrate.FormattingEnabled = true;
             this.cboBaudrate.Location = new System.Drawing.Point(304, 47);
-            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBaudrate.Margin = new System.Windows.Forms.Padding(2);
             this.cboBaudrate.Name = "cboBaudrate";
             this.cboBaudrate.Size = new System.Drawing.Size(156, 21);
             this.cboBaudrate.TabIndex = 1;
@@ -225,16 +229,16 @@
             // 
             // slcFile
             // 
-            this.slcFile.Location = new System.Drawing.Point(87, 516);
-            this.slcFile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.slcFile.Location = new System.Drawing.Point(87, 497);
+            this.slcFile.Margin = new System.Windows.Forms.Padding(2);
             this.slcFile.Name = "slcFile";
             this.slcFile.Size = new System.Drawing.Size(180, 20);
             this.slcFile.TabIndex = 4;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(18, 428);
-            this.btnClear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClear.Location = new System.Drawing.Point(18, 422);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(74, 29);
             this.btnClear.TabIndex = 5;
@@ -248,7 +252,7 @@
             this.checkNone.Checked = true;
             this.checkNone.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkNone.Location = new System.Drawing.Point(62, 21);
-            this.checkNone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkNone.Margin = new System.Windows.Forms.Padding(2);
             this.checkNone.Name = "checkNone";
             this.checkNone.Size = new System.Drawing.Size(52, 17);
             this.checkNone.TabIndex = 6;
@@ -260,7 +264,7 @@
             // 
             this.checkOdd.AutoSize = true;
             this.checkOdd.Location = new System.Drawing.Point(122, 21);
-            this.checkOdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkOdd.Margin = new System.Windows.Forms.Padding(2);
             this.checkOdd.Name = "checkOdd";
             this.checkOdd.Size = new System.Drawing.Size(46, 17);
             this.checkOdd.TabIndex = 6;
@@ -272,7 +276,7 @@
             // 
             this.checkEven.AutoSize = true;
             this.checkEven.Location = new System.Drawing.Point(176, 22);
-            this.checkEven.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkEven.Margin = new System.Windows.Forms.Padding(2);
             this.checkEven.Name = "checkEven";
             this.checkEven.Size = new System.Drawing.Size(51, 17);
             this.checkEven.TabIndex = 6;
@@ -303,7 +307,7 @@
             // cboBit
             // 
             this.cboBit.Location = new System.Drawing.Point(62, 46);
-            this.cboBit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboBit.Margin = new System.Windows.Forms.Padding(2);
             this.cboBit.Name = "cboBit";
             this.cboBit.Size = new System.Drawing.Size(92, 21);
             this.cboBit.TabIndex = 9;
@@ -311,8 +315,8 @@
             // progressBar1
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
-            this.progressBar1.Location = new System.Drawing.Point(382, 518);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Location = new System.Drawing.Point(382, 499);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(172, 12);
             this.progressBar1.TabIndex = 10;
@@ -332,25 +336,10 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // zedGraphControl1
-            // 
-            this.zedGraphControl1.Location = new System.Drawing.Point(680, 56);
-            this.zedGraphControl1.Name = "zedGraphControl1";
-            this.zedGraphControl1.ScrollGrace = 0D;
-            this.zedGraphControl1.ScrollMaxX = 0D;
-            this.zedGraphControl1.ScrollMaxY = 0D;
-            this.zedGraphControl1.ScrollMaxY2 = 0D;
-            this.zedGraphControl1.ScrollMinX = 0D;
-            this.zedGraphControl1.ScrollMinY = 0D;
-            this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(494, 484);
-            this.zedGraphControl1.TabIndex = 13;
-            this.zedGraphControl1.Load += new System.EventHandler(this.zedGraphControl1_Load);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 484);
+            this.label9.Location = new System.Drawing.Point(14, 465);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(91, 13);
@@ -371,7 +360,7 @@
             // button2
             // 
             this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(1100, 18);
+            this.button2.Location = new System.Drawing.Point(1112, 18);
             this.button2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(74, 27);
@@ -390,18 +379,34 @@
             this.label10.TabIndex = 17;
             this.label10.Text = "Plot";
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(680, 56);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(506, 465);
+            this.chart1.TabIndex = 18;
+            this.chart1.Text = "chart1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1194, 561);
+            this.ClientSize = new System.Drawing.Size(1214, 550);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.zedGraphControl1);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.cboBit);
@@ -428,13 +433,14 @@
             this.Controls.Add(this.btnOpen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Com Port App";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -468,11 +474,11 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnRefresh;
-        private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }
 

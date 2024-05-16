@@ -8,12 +8,15 @@ using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
+using System.Threading.Tasks;   
 using System.Windows.Forms;
+using System.Xml.Linq;
 using ZedGraph;
+using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.LinkLabel;
 namespace com_port
 {
+    
     public partial class Form1 : Form
     {
         GraphPane myPaneSicaklik = new GraphPane();
@@ -37,7 +40,6 @@ namespace com_port
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            GrafikHazırla();
             string[] ports = SerialPort.GetPortNames();
             List<string> baudRates = new List<string>()
             {
@@ -80,22 +82,6 @@ namespace com_port
             
         }
 
-
-        private void GrafikHazırla()
-        {
-            myPaneSicaklik = zedGraphControl1.GraphPane;
-            myPaneSicaklik.Title.Text = "Plot";
-            myPaneSicaklik.XAxis.Title.Text = "Time  t ";
-            myPaneSicaklik.YAxis.Title.Text = "Value";
-
-            myPaneSicaklik.YAxis.Scale.Min = 0;
-            myPaneSicaklik.YAxis.Scale.Max = 1000;
-
-            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsRoll, Color.Red, SymbolType.None);
-            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsPitch, Color.Blue, SymbolType.None);
-            myCurveSicaklik = myPaneSicaklik.AddCurve(null, listPointsYaw, Color.Green, SymbolType.None);
-            myCurveSicaklik.Line.Width = 4;
-        }
         private void btnOpen_Click(object sender, EventArgs e)
         {
             
@@ -149,49 +135,31 @@ namespace com_port
             {
                 SerialPort serialPort = (SerialPort)sender;
                 string receivedData = serialPort.ReadExisting();
-                double roll = 0, pitch = 0, yaw = 0;
-                int count = 0;
-                List<string> dataParts = new List<string>();
+
 
                 // GUI elemanlarına erişim için Invoke kullanılması
                 Invoke(new Action(() =>
                 {
                     if (!graphOpen) { txtReceive.AppendText(receivedData);}
-                    else if (graphOpen) {
-                        zaman += 0.05;
-
-
-                        dataParts.AddRange(receivedData.Split(','));
-
-                        
-                        switch (count) { 
-                            case 0:
-                                double.TryParse(dataParts[0], out roll);
-                                listPointsRoll.Add(new PointPair(zaman, roll));
-                                count++;
-                                 break;
-                            case 1:
-                                double.TryParse(dataParts[0], out pitch);
-                                listPointsPitch.Add(new PointPair(zaman, pitch));
-                                count++; break;
-                            case 2:
-                                double.TryParse(dataParts[0], out yaw);
-                                listPointsYaw.Add(new PointPair(zaman, yaw));
-                                count = 0; break;
-                            default:
-                                //listPointsRoll.Add(new PointPair(zaman, roll));
-                                count = 0; break;
-                        }
-                                             
-                        myPaneSicaklik.XAxis.Scale.Max = zaman;
-                        myPaneSicaklik.AxisChange();
-
-                        zedGraphControl1.Refresh();
+                    else if (graphOpen && double.TryParse(receivedData, out double value)) {
+                        //zaman += 0.05;
+                        UpdateChart(value);
+                        //zedGraphControl1.Refresh();
                     }
-                }));
+                }
+                ));
                                     
             }
             
+        }
+        private void UpdateChart(double value)
+        {
+            chart1.Series["Data"].Points.AddY(value);
+            if (chart1.Series["Data"].Points.Count > 100) // 100 noktadan fazla ise en eskiyi kaldır
+            {
+                chart1.Series["Data"].Points.RemoveAt(0);
+            }
+            chart1.ResetAutoValues(); // Otomatik ölçekleme
         }
 
         private void btnSend_Click(object sender, EventArgs e)
