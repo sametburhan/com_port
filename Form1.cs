@@ -14,19 +14,22 @@ using System.Xml.Linq;
 using ZedGraph;
 using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.LinkLabel;
+using System.Drawing.Drawing2D;
+using System.Collections;
 namespace com_port
 {
     
     public partial class Form1 : Form
     {
-        GraphPane myPaneSicaklik = new GraphPane();
-        PointPairList listPointsRoll = new PointPairList();
-        PointPairList listPointsPitch = new PointPairList();
-        PointPairList listPointsYaw = new PointPairList();
 
-        LineItem myCurveSicaklik;
-        double zaman = 0;
         bool graphOpen = false;
+        double t_time;
+        double last_time;
+        float fStartDegree;
+        double OutVal;
+        DateTime startTime;
+        bool firstTimeFlag = true;
+        PointPairList myList = new PointPairList();
 
         public Form1()
         {
@@ -129,6 +132,28 @@ namespace com_port
             //txtReceive.AppendText(serialPort1.ReadExisting() + Environment.NewLine);//"sdjfkgos" + Environment.NewLine);
 
         }
+
+        private void initGraph()
+        {
+            GraphPane myPane = zg1.GraphPane;
+            myPane.Title.Text = "Plot";
+            myPane.XAxis.Title.Text = "Time";
+            myPane.YAxis.Title.Text = "Value";
+            myPane.CurveList.Clear();
+            myPane.GraphObjList.Clear();
+            myPane.XAxis.MajorGrid.IsVisible = true;
+            myPane.YAxis.MajorGrid.IsVisible = true;
+            myPane.Chart.Fill = new Fill(Color.White,Color.Beige,45.0f);
+            LineItem myCurve = myPane.AddCurve("Data",myList,Color.Blue,SymbolType.None);
+
+            myCurve.Line.IsVisible = true;
+            myCurve.Symbol.Border.IsVisible = true;
+            myCurve.Symbol.Fill = new Fill(Color.Blue);
+            myCurve.Symbol.Size = 5;
+
+            zg1.AxisChange();
+            zg1.Invalidate();
+        }
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
         if (serialPort1.IsOpen)
@@ -140,26 +165,55 @@ namespace com_port
                 // GUI elemanlarına erişim için Invoke kullanılması
                 Invoke(new Action(() =>
                 {
-                    if (!graphOpen) { txtReceive.AppendText(receivedData);}
-                    else if (graphOpen && double.TryParse(receivedData, out double value)) {
-                        //zaman += 0.05;
-                        UpdateChart(value);
-                        //zedGraphControl1.Refresh();
+                    if (!graphOpen) { 
+                        txtReceive.AppendText(receivedData); 
                     }
+                    else if (graphOpen) {
+
+                        try
+                        {
+                            string[] numberArray = receivedData.Split('\n');
+                            if (numberArray.Length > 4) {
+                                double.TryParse(numberArray[2], out OutVal);
+                                ProcessReceivedData(OutVal);
+                            } }
+                        catch (Exception)
+                        {
+                        }
+
+                    }
+                    
                 }
                 ));
-                                    
             }
             
         }
-        private void UpdateChart(double value)
+
+        private void ProcessReceivedData(double data)
         {
-            chart1.Series["Data"].Points.AddY(value);
-            if (chart1.Series["Data"].Points.Count > 100) // 100 noktadan fazla ise en eskiyi kaldır
-            {
-                chart1.Series["Data"].Points.RemoveAt(0);
-            }
-            chart1.ResetAutoValues(); // Otomatik ölçekleme
+            //her saniye veri göstermek için bir diğer yöntem
+            /*t_time = (int)(DateTime.Now - startTime).TotalSeconds;
+            if (t_time != last_time) {
+                myList.Add(t_time, data);
+                last_time = t_time;
+            }else if(firstTimeFlag){
+                myList.Add(t_time, data);
+                firstTimeFlag = false;
+             }*/
+            
+            myList.Add(t_time, data);
+            t_time = t_time + 0.01;
+
+            fStartDegree++;
+            UpdateChart();
+        }
+
+        private void UpdateChart()
+        {
+            zg1.AxisChange();
+            zg1.Invalidate();
+            zg1.Update();
+            zg1.Refresh();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -348,13 +402,22 @@ namespace com_port
 
         private void zedGraphControl1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Enabled = false;
             button2.Enabled = true;
+
+            myList.Clear();
+            t_time = 0;
+            firstTimeFlag = true;
+            last_time = 0;
+            startTime = DateTime.Now;
+            fStartDegree = 0;
+            initGraph();
+
             graphOpen = true;
         }
 
@@ -363,6 +426,7 @@ namespace com_port
             button1.Enabled = true;
             button2.Enabled = false;
             graphOpen = false;
+            
         }
     }
 }
